@@ -1,0 +1,11 @@
+{
+  "orderId" : "ORD-100500",
+  "customer" : "Иван Иванов",
+  "subtotal" : 80000.0,
+  "discountAmount" : 8000.0,
+  "taxAmount" : 14400.0,
+  "total" : 86400.0,
+  "processedAt" : "2026-10-18T19:13:49.203363Z",
+  "status" : "OK",
+  "message" : "Счёт успешно сформирован"
+}
