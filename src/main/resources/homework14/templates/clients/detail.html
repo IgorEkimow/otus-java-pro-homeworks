@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Карточка клиента')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="shell narrow">
+    <a class="back-link" th:href="@{/clients}">← К списку клиентов</a>
+    <p class="eyebrow">Карточка клиента</p>
+    <h1 class="wrap" th:text="${client.name}">Клиент</h1>
+    <p class="muted intro">Клиент № <span th:text="${client.id}">1</span></p>
+    <section class="card">
+        <dl class="details">
+            <dt>Адрес</dt><dd th:text="${client.address == null ? 'Не указан' : client.address.street}">Не указан</dd>
+            <dt>Телефоны</dt>
+            <dd>
+                <span th:if="${client.phones.isEmpty()}">Не указаны</span>
+                <ul class="phone-list" th:unless="${client.phones.isEmpty()}">
+                    <li th:each="phone : ${client.phones}" th:text="${phone.number}">Телефон</li>
+                </ul>
+            </dd>
+        </dl>
+        <div class="actions">
+            <a class="button" th:href="@{/clients/{id}/edit(id=${client.id})}">Изменить данные</a>
+            <a class="button secondary danger-link" th:href="@{/clients/{id}/delete(id=${client.id})}">Удалить клиента</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>

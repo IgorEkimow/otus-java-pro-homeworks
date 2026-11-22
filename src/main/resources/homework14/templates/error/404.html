@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Страница не найдена')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="shell narrow">
+    <p class="eyebrow">Ошибка 404</p>
+    <h1>Страница не найдена</h1>
+    <p class="muted intro">Клиент мог быть удалён или ссылка указана неверно.</p>
+    <a class="button" th:href="@{/clients}">К списку клиентов</a>
+</main>
+</body>
+</html>

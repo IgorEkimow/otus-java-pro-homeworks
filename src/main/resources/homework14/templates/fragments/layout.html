@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' — Клиенты'">Клиенты</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<header class="topbar" th:fragment="header">
+    <div class="shell topbar-inner">
+        <a class="brand" th:href="@{/clients}"><span class="brand-mark" aria-hidden="true">К</span>Клиенты</a>
+        <span class="muted topbar-caption">Контакты под рукой</span>
+    </div>
+</header>
+</body>
+</html>
