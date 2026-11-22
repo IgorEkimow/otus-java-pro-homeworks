@@ -1,9 +1,8 @@
 package ru.otus.java.pro.homeworks.homework13.services;
 
-import ru.otus.model.Player;
+import ru.otus.java.pro.homeworks.homework13.model.Player;
 
 public class PlayerServiceImpl implements PlayerService {
-
     private final IOService ioService;
 
     public PlayerServiceImpl(IOService ioService) {
@@ -14,6 +13,7 @@ public class PlayerServiceImpl implements PlayerService {
     public Player getPlayer() {
         ioService.out("Представьтесь пожалуйста");
         String playerName = ioService.readLn("Введите имя: ");
+
         return new Player(playerName);
     }
 }

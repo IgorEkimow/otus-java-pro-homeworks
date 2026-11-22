@@ -21,12 +21,14 @@ public class IOServiceStreams implements IOService {
     @Override
     public String readLn(String prompt) {
         out(prompt);
+
         return in.next();
     }
 
     @Override
     public int readInt(String prompt) {
         out(prompt);
+
         return in.nextInt();
     }
 }

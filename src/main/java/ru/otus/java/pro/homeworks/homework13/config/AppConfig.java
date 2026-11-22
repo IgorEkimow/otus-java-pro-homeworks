@@ -1,12 +1,11 @@
 package ru.otus.java.pro.homeworks.homework13.config;
 
-import ru.otus.appcontainer.api.AppComponent;
-import ru.otus.appcontainer.api.AppComponentsContainerConfig;
-import ru.otus.services.*;
+import ru.otus.java.pro.homeworks.homework13.appcontainer.api.AppComponent;
+import ru.otus.java.pro.homeworks.homework13.appcontainer.api.AppComponentsContainerConfig;
+import ru.otus.java.pro.homeworks.homework13.services.*;
 
 @AppComponentsContainerConfig(order = 1)
 public class AppConfig {
-
     @AppComponent(order = 0, name = "equationPreparer")
     public EquationPreparer equationPreparer() {
         return new EquationPreparerImpl();
@@ -18,8 +17,7 @@ public class AppConfig {
     }
 
     @AppComponent(order = 2, name = "gameProcessor")
-    public GameProcessor gameProcessor(
-            IOService ioService, PlayerService playerService, EquationPreparer equationPreparer) {
+    public GameProcessor gameProcessor(IOService ioService, PlayerService playerService, EquationPreparer equationPreparer) {
         return new GameProcessorImpl(ioService, equationPreparer, playerService);
     }
 

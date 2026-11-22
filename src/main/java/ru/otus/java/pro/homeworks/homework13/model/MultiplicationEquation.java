@@ -1,7 +1,6 @@
 package ru.otus.java.pro.homeworks.homework13.model;
 
 public class MultiplicationEquation extends Equation {
-
     public MultiplicationEquation(int leftPart, int rightPart) {
         super(leftPart, rightPart);
     }

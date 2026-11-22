@@ -2,7 +2,6 @@ package ru.otus.java.pro.homeworks.homework13.model;
 
 public class GameResult {
     private static final String RESULT_PATTERN = "Уважаемый: %s. Всего было примеров: %d, отвечено верно: %d";
-
     private final Player player;
     private int total;
     private int rightAnswers;
@@ -13,6 +12,7 @@ public class GameResult {
 
     public void incrementRightAnswers(boolean mustIncremented) {
         total++;
+
         if (mustIncremented) {
             rightAnswers++;
         }
