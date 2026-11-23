@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Удаление клиента')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="shell narrow">
+    <a class="back-link" th:href="@{/clients}">← К списку клиентов</a>
+    <p class="eyebrow">Удаление записи</p>
+    <h1>Удалить клиента?</h1>
+    <p class="muted intro">Будут удалены данные клиента и все его телефоны.</p>
+    <section class="card">
+        <p class="delete-name wrap" th:text="${client.name}">Клиент</p>
+        <p class="muted">Клиент № <span th:text="${client.id}">1</span></p>
+        <form method="post" th:action="@{/clients/{id}/delete(id=${client.id})}">
+            <div class="actions">
+                <button class="danger" type="submit">Удалить клиента</button>
+                <a class="button secondary" th:href="@{/clients/{id}(id=${client.id})}">Отмена</a>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Список клиентов')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="shell">
+    <div class="page-header">
+        <div>
+            <p class="eyebrow">Клиентская база</p>
+            <h1>Список клиентов</h1>
+            <p class="muted">Имена, адреса и телефоны — в одном месте.</p>
+        </div>
+        <a class="button" th:href="@{/clients/new}">Добавить клиента</a>
+    </div>
+    <div th:if="${message}" class="notice success" role="status" th:text="${message}"></div>
+    <section class="card" aria-labelledby="list-heading">
+        <div class="list-header">
+            <h2 id="list-heading">Все клиенты <span class="count" th:text="${clients.size()}">0</span></h2>
+            <a th:href="@{/clients}">Обновить список</a>
+        </div>
+        <div class="empty" th:if="${clients.isEmpty()}">
+            <strong>Клиентов пока нет</strong>
+            <p>Добавьте первого клиента, чтобы сохранить его контактные данные.</p>
+            <a class="button secondary" th:href="@{/clients/new}">Добавить клиента</a>
+        </div>
+        <div class="table-wrap" th:unless="${clients.isEmpty()}">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Телефоны</th>
+                    <th scope="col">Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="client : ${clients}">
+                    <td class="identifier" th:text="${client.id}">1</td>
+                    <td>
+                        <a class="client-name" th:href="@{/clients/{id}(id=${client.id})}" th:text="${client.name}">Имя</a>
+                    </td>
+                    <td th:text="${client.address == null ? '—' : client.address.street}">Адрес</td>
+                    <td>
+                        <span th:if="${client.phones.isEmpty()}">—</span>
+                        <ul class="phone-list" th:unless="${client.phones.isEmpty()}">
+                            <li th:each="phone : ${client.phones}" th:text="${phone.number}">Телефон</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="row-actions">
+                            <a th:href="@{/clients/{id}/edit(id=${client.id})}">Изменить</a>
+                            <a class="danger-link" th:href="@{/clients/{id}/delete(id=${client.id})}">Удалить</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+</body>
+</html>

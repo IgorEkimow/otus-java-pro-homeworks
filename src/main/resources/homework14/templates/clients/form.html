@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${editing ? 'Редактирование клиента' : 'Новый клиент'})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="shell narrow">
+    <a class="back-link" th:href="@{/clients}">← К списку клиентов</a>
+    <p class="eyebrow" th:text="${editing ? 'Изменение данных' : 'Создание записи'}">Создание записи</p>
+    <h1 th:text="${editing ? 'Редактирование клиента' : 'Новый клиент'}">Новый клиент</h1>
+    <p class="muted intro">Укажите имя. Адрес и телефоны можно добавить по желанию.</p>
+    <section class="card">
+        <form method="post" th:action="${editing} ? @{/clients/{id}(id=${clientId})} : @{/clients}" th:object="${clientForm}">
+            <div class="notice error" role="alert" th:if="${#fields.hasAnyErrors()}">
+                <strong>Проверьте введённые данные.</strong>
+                <ul>
+                    <li th:each="error : ${#fields.allErrors()}" th:text="${error}">Ошибка</li>
+                </ul>
+            </div>
+            <div class="field">
+                <label for="name">Имя клиента <span class="required">*</span></label>
+                <input id="name" type="text" th:field="*{name}" required maxlength="255" autocomplete="name"
+                    th:attr="aria-invalid=${#fields.hasErrors('name')}">
+            </div>
+            <div class="field">
+                <label for="street">Адрес <span class="optional">· необязательно</span></label>
+                <input id="street" type="text" th:field="*{street}" maxlength="255" autocomplete="street-address"
+                    th:attr="aria-invalid=${#fields.hasErrors('street')}">
+            </div>
+            <div class="field">
+                <label for="phones">Телефоны <span class="optional">· необязательно</span></label>
+                <textarea id="phones" th:field="*{phones}" rows="4" maxlength="5119" aria-describedby="phones-hint"
+                    th:attr="aria-invalid=${#fields.hasErrors('phones')}"></textarea>
+                <small id="phones-hint" class="hint">Каждый номер с новой строки. До 20 номеров, не более 255 символов в каждом.</small>
+            </div>
+            <div class="actions">
+                <button type="submit" th:text="${editing ? 'Сохранить изменения' : 'Создать клиента'}">Создать клиента</button>
+                <a class="button secondary" th:href="@{/clients}">Отмена</a>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>
