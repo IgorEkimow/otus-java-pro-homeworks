@@ -1,0 +1,9 @@
+{
+  "orderId": "ORD-100500",
+  "customer": "Иван Иванов",
+  "items": [
+    { "productId": 1, "name": "Ноутбук", "price": 75000.0, "quantity": 1 },
+    { "productId": 2, "name": "Мышь",    "price": 2500.0,  "quantity": 2 }
+  ],
+  "discountPercent": 10
+}
