@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package homework17;
+
+option java_package = "ru.otus.java.pro.homeworks.homework17.generated";
+option java_multiple_files = true;
+option java_outer_classname = "NumbersProtocol";
+
+service NumbersService {
+  rpc GenerateSequence(SequenceRequest) returns (stream SequenceResponse);
+}
+
+message SequenceRequest {
+  int32 first_value = 1;
+  int32 last_value = 2;
+}
+
+message SequenceResponse {
+  int32 value = 1;
+}
